@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <title>HayaHHotel Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css" integrity="sha512-UTNP5BXLIptsaj5WdKFrkFov94lDx+eBvbKyoe1YAfjeRPC+gT5kyZ10kOHCfNZqEui1sxmqvodNUx3KbuYI/A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <header class="header" id="navigation-menu">
+    <div class="container">
+      <nav>
+        <a href="#" class="logo"> <img src="Elogo.png" alt=""> </a>
+
+        <ul class="nav-menu">
+          <li> <a href="#home" class="nav-link">Home</a> </li>
+          <li> <a href="#about" class="nav-link">About</a> </li>
+          <li> <a href="#rooms" class="nav-link">Rooms</a> </li>
+          <li> <a href="#restaurant" class="nav-link">Restaurant</a> </li>
+          <li> <a href="#gallary" class="nav-link">Gallery</a> </li>
+          <li> <a href="#activates" class="nav-link">Activates </a> </li>
+          <li> <a href="contact.html" class="nav-link">Contact</a> </li>
+        </ul>
+
+        <div class="hambuger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <script>
+    const hambuger = document.querySelector('.hambuger');
+    const navMenu = document.querySelector('.nav-menu');
+
+    hambuger.addEventListener("click", mobileMenu);
+
+    function mobileMenu() {
+      hambuger.classList.toggle("active");
+      navMenu.classList.toggle("active");
+    }
+
+    const navLink = document.querySelectorAll('.nav-link');
+    navLink.forEach((n) => n.addEventListener("click", closeMenu));
+
+    function closeMenu() {
+      hambuger.classList.remove("active");
+      navMenu.classList.remove("active");
+    }
+  </script>
+
+<section class="home" id="home">
+  <div class="head_container">
+    <div class="box">
+      <div class="text">
+        <h1 class="welcome-text">Welcome To HayaH!</h1>
+
+        <h2 class="def-text">Live The Nubian Experience</h2>
+      </div>
+    </div>
+    <div class="image">
+      <img src="home1.jpg" class="slide" id="mainImage">
+    </div>
+    <div class="image_item">
+      <img src="home1.jpg" alt="" class="slide active" onclick="changeImage('home1.jpg', 0)">
+      <img src="homme.jpg" alt="" class="slide" onclick="changeImage('homme.jpg', 1)">
+      <img src="han.jpg" alt="" class="slide" onclick="changeImage('han.jpg', 2)">
+      <img src="room2.jpg" alt="" class="slide" onclick="changeImage('room2.jpg', 3)">
+    </div>
+  </div> 
+</section>
+
+<script>
+  const images = ['home1.jpg', 'homme.jpg', 'han.jpg', 'room2.jpg'];
+  let currentIndex = 0;
+
+  function changeImage(src, index) {
+    document.getElementById('mainImage').src = src;
+    document.querySelectorAll('.image_item img').forEach((img, idx) => {
+      img.classList.toggle('active', idx === index);
+    });
+    currentIndex = index;
+  }
+
+  function startSlideshow() {
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % images.length;
+      changeImage(images[currentIndex], currentIndex);
+    }, 2000);
+  }
+
+  document.addEventListener('DOMContentLoaded', (event) => {
+    startSlideshow();
+  });
+</script>
+
+    
+<section class="book">
+  <form action="search.php" method="POST">
+    <div class="container flex">
+      <div class="input grid">
+        <div class="box">
+          <label>Check-in:</label>
+          <input type="date" name="checkin_date" placeholder="Check-in-Date" required>
+        </div>
+        <div class="box">
+          <label>Check-out:</label>
+          <input type="date" name="checkout_date" placeholder="Check-out-Date" required>
+        </div>
+        <div class="box">
+          <label>Adults:</label> <br>
+          <input type="number" name="adults" placeholder="0" required min="0">
+        </div>
+        <div class="box">
+          <label>Children:</label> <br>
+          <input type="number" name="children" placeholder="0" required min="0">
+        </div>
+      </div>
+      <div class="search">
+        <input type="submit" value="SEARCH">
+      </div>
+    </div>
+  </form>
+</section>
+
+    
+
+    
+  
+  <section class="about top" id="about">
+    <img class="Frame1"src="dev.png" />
+    <div class="container flex">
+      <div class="left">
+        <div class="heading">
+          <h5>RAISING COMFOMRT TO THE HIGHEST LEVEL</h5>
+          <h2>It Is More Than Just A Hotel<br>It Is A Lifetime Experience</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+          <button class="btn1" id="aboutButton" onclick="openAboutPage()">Read More</button>
+
+          
+<script>
+    function openAboutPage() {
+        window.open('about.html#about-section', '_blank');
+        document.getElementById("aboutButton").innerText = "Clicked"; // Change button text
+        document.getElementById("aboutButton").classList.add("clicked"); // Add a class to change button color
+    }
+</script>
+        </div>
+      </div>
+      <div class="right">
+          <div class="img">
+            <img src="a1.jpg" alt="" class="image1">
+            <img src="a2.jpg" alt="" class="image2">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="video-section">
+    <div class="image-layer" style="background-image: url(view2.jpg);"></div>
+    <div class="auto-container">
+        <div class="content-box wow zoomIn" data-wow-delay="0ms" data-wow-duration="2000ms">
+            <h1>Every Step We Take Together Makes Us Stronger</h1>
+            
+        </div>
+    </div>
+</section>
+
+<img class="Frame1"src="dev.png"/>
+
+  <section class="wrapper top" id="activates">
+    <div class="container">
+      <div class="text">
+        <h2>Our Amenities</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+
+        <div class="content">
+          <div class="box flex">
+            <i class="fas fa-swimming-pool"></i>
+            <span>Swimming pool</span>
+          </div>
+          <div class="box flex">
+            <i class="fas fa-dumbbell"></i>
+            <span>Gym & yogo</span>
+          </div>
+          <div class="box flex">
+            <i class="fas fa-spa"></i>
+            <span>Spa & massage</span>
+          </div>
+          <div class="box flex">
+            <i class="fas fa-ship"></i>
+            <span>Boat Tours</span>
+          </div>
+          <button class="learn-more" onclick="window.location.href='activites.php'">Learn More</button>    
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="room top" id="rooms">
+    <div class="container">
+      <div class="heading_top flex1">
+        <div class="title centered">
+          <h2 style="position:relative;display:block;font-size:48px;line-height:62.4px;color:#6e421d;font-weight:200;margin-bottom:0px;margin:0px;font-family:Raleway, sans-serif;padding:0px;border:0px none rgb(27, 28, 30);outline:rgb(27, 28, 30) none 0px;margin-top:0px;box-sizing:border-box;">Accommodation</h2>
+          <div style="position:relative;display:block;font-size:16px;line-height:27.2px;font-weight:400;color:#855934;border:0px none rgb(0, 0, 0);outline:rgb(0, 0, 0) none 0px; width: 600;">Eco-Friendly yet elegant and airy rooms filled with the alluring natural light of the city, elevated by high wood ceilings that create a feeling of space and allow the cool breeze.</div>
+        
+        </div>
+  
+      <div class="owl-carousel owl-theme">
+        <div class="item">
+          <div class="card">
+            <img src="room3.jpg" alt="">
+            <div class="card-description">
+              <h3>Single Room</h3>
+              <p>A Cozy One Bed Room To Clear Your Mind.</p>
+              <button class="learn-more" onclick="window.location.href='SingleRoom.html'">Learn More</button>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="card">
+            <img src="room4.jpg" alt="">
+            <div class="card-description">
+              <h3>Double Room</h3>
+              <p>Insert description of the room here.</p>
+              <button class="learn-more" onclick="window.location.href='DoubleRoom.html'">Learn More</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="card">
+            <img src="f.jpg" alt="">
+            <div class="card-description">
+              <h3>Family Room</h3>
+              <p>Insert description of the room here.</p>
+              <button class="learn-more" onclick="window.location.href='FamilyRoom.html'">Learn More</button>
+            </div>
+            </div>
+          </div>
+
+        <div class="item">
+          <div class="card">
+            <img src="suite.jpg" alt="">
+            <div class="card-description">
+              <h3>Suite</h3>
+              <p>Insert description of the room here.</p>
+              <button class="learn-more" onclick="window.location.href='SuiteRoom.html'">Learn More</button>
+            </div>
+            </div>
+          </div>
+        </div>
+
+  </section>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js" integrity="sha512-gY25nC63ddE0LcLPhxUJGFxa2GoIyA5FLym4UJqHDEMHjp8RET6Zn/SHo1sltt3WuVtqfyxECP38/daUc/WVEA==" crossorigin="anonymous"
+  referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous"
+  referrerpolicy="no-referrer"></script>
+<script>
+  $('.owl-carousel').owlCarousel({
+    loop: true,
+    margin:6,
+    nav: true,
+    dots: false,
+    navText: ["<i class='fas fa-chevron-left'></i>", "<i class='fas fa-chevron-right'></i>"],
+    responsive: {
+      0: {
+        items: 2
+      },
+      768: {
+        items: 2
+      },
+      1000: {
+        items: 2
+      }
+    }
+  })
+</script>
+
+  <section class="wrapper wrapper2 top">
+    <div class="container">
+      <div class="text">
+        <div class="heading">
+          <h5>AT THE HEART OF COMMUNICATION</h5>
+          <h2>People Say</h2>
+        </div>
+
+        <div class="para">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+
+          <div class="box flex">
+            <div class="img">
+              <img src="c.jpg" alt="">
+            </div>
+            <div class="name">
+              <h5>KATE PALMER</h5>
+              <h5>IDAHO</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="restaurant top" id="restaurant">
+    <img class="Frame2" src="devider2.png" />
+  
+    <div class="container flex">
+      <div class="left">
+        <img src="re.jpg" alt="">
+      </div>
+      <div class="right">
+        <div class="text">
+          <h2>Our Restaurant</h2>
+          <p>Welcome to our culinary haven, where flavors from around the world converge to create an unforgettable dining experience. Indulge in the richness of Egyptian, Indian, Italian, and Mexican cuisines, each offering a unique and delightful journey for your taste buds.</p>
+        </div>
+        <div class="accordionWrapper">
+          <div class="accordionItem open">
+            <h2 class="accordionIHeading">Egyptian Delights</h2>
+            <div class="accordionItemContent">
+              <p>Embark on a culinary adventure through the land of the Pharaohs with our tantalizing Egyptian dishes. From aromatic Kushari to savory Kebabs, each bite is a taste of Egypt's rich history and culture.</p>
+            </div>
+          </div>
+          <div class="accordionItem close">
+            <h2 class="accordionIHeading">Nubian Spice Sensations</h2>
+            <div class="accordionItemContent">
+              <p>Experience the vibrant and aromatic spices of India with our mouthwatering selection of curries, tandoori specialties, and fragrant biryanis. Let your taste buds dance to the rhythm of Indian cuisine.</p>
+            </div>
+          </div>
+          <div class="accordionItem close">
+            <h2 class="accordionIHeading">Italian Kitchen</h2>
+            <div class="accordionItemContent">
+              <p>Savor the flavors of Italy with our authentic Italian dishes. From classic pasta dishes to wood-fired pizzas, each bite is a journey through the rustic countryside of Italy.</p>
+            </div>
+          </div>
+          <div class="accordionItem close">
+            <h2 class="accordionIHeading">Mexican Fiesta</h2>
+            <div class="accordionItemContent">
+              <p>Spice up your dining experience with our bold and vibrant Mexican cuisine. From sizzling fajitas to flavorful tacos, our Mexican dishes are a fiesta for your taste buds.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+  <script>
+    var accItem = document.getElementsByClassName('accordionItem');
+    var accHD = document.getElementsByClassName('accordionIHeading');
+
+    for (i = 0; i < accHD.length; i++) {
+      accHD[i].addEventListener('click', toggleItem, false);
+    }
+
+    function toggleItem() {
+      var itemClass = this.parentNode.className;
+      for (var i = 0; i < accItem.length; i++) {
+        accItem[i].className = 'accordionItem close';
+      }
+      if (itemClass == 'accordionItem close') {
+        this.parentNode.className = 'accordionItem open';
+      }
+    }
+  </script>
+
+  <section class="gallary mtop " id="gallary">
+    <div class="container">
+      <div class="heading_top flex1">
+        <div class="heading">
+          <h5>WELCOME TO OUR PHOTO GALLERY</h5>
+          <h2>Take A Look At Our Hotel</h2>
+        </div>
+      </div>
+
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="a1.jpg" alt=""></div>
+          <div class="swiper-slide"><img src="a2.jpg" alt=""></div>
+          <div class="swiper-slide"><img src="home4.jpg" alt=""></div>
+          <div class="swiper-slide"><img src="wr2.jpg" alt=""></div>
+          <div class="swiper-slide"><img src="home1.jpg" alt=""></div>
+          <div class="swiper-slide"><img src="homme.jpg" alt=""></div>
+        </div>
+      </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      effect: "cards",
+      grabCursor: true,
+    });
+  </script>
+
+<section class="map top">
+  <div class="container">
+  <div class="heading">
+    <h5>Find Us Here !</h5>
+    <h2>Take A Look At Our Hotel's Location </h2>
+  </div>
+
+<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14131.036667732067!2d32.88109700878639!3d24.046383803001195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2snp!4v1637755481449!5m2!1sen!2snp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+</section>
+
+<footer>
+  <div class="container grid top">
+    <div class="box">
+      <img src="Elogo.png" />
+
+      <p>Accepted payment methods</p>
+      <div class="payment grid">
+        <img src="https://img.icons8.com/color/48/000000/visa.png" />
+        <img src="https://img.icons8.com/color/48/000000/mastercard.png" />
+        <img src="https://img.icons8.com/color-glass/48/000000/paypal.png" />
+        <img src="https://img.icons8.com/fluency/48/000000/amex.png" />
+      </div>
+    </div>
+
+    <div class="box">
+      <h3>Recent News</h3>
+
+      <ul>
+        <li>Our Secret Island Boat Tour Is Just for You</li>
+        <li>Art class</li>
+        <li>Live Music Concerts at Luviana</li>
+      </ul>
+    </div>
+
+    <div class="box">
+      <h3>For Customers</h3>
+      <ul>
+        <li>About Luviana</li>
+        <li>Customer Care/Help</li>
+        <li>Corporate Accounts</li>
+        <li>Financial Information</li>
+        <li>Terms & Conditions</li>
+      </ul>
+    </div>
+
+    <div class="box">
+      <h3>Contact Us</h3>
+
+      <ul>
+        <li>3015 Grand Ave, Cocount Grove, Merrick Way FL 123456</li>
+        <li><i class="far fa-envelope"></i>demoexample@gmail.com </li>
+        <li><i class="far fa-phone-alt"></i>123 456 7898 </li>
+        <li><i class="far fa-phone-alt"></i>123 456 7898 </li>
+        <li><i class="far fa-comments"></i>24/ 7 Customer Services </li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>TripBoss</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- font awesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- fonts -->
+    <link rel="stylesheet" href="fonts.css">
+    <!-- normalize css -->
+    <link rel="stylesheet" href="normalize.css">
+    <!-- custom css -->
+    <link rel="stylesheet" href="utility.css">
+    <link rel="stylesheet" href="Contact.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+    <!-- navbar  -->
+    <header>
+        <a href="index.html" class="logo"> <img src="Elogo.png" alt=""> </a>
+        <nav class="navigation">
+            <a href="index.html">Home</a>
+            <a href="AbouT.html">About</a>
+            <a href="#contact">Rooms</a>
+            <a href="AbouT.html">Restaurant</a>
+            <a href="#contact">Gallery</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+    <section class="contact">
+        <h2 class="title">Contact Form</h2>
+
+        <form id="contactForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name"><br>
+            <span id="name-error" style="color:red;"></span><br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email"><br>
+            <span id="email-error" style="color:red;"></span><br><br>
+
+            <label for="message">Message:</label><br>
+            <textarea id="message" name="message" rows="4" cols="50"></textarea><br><br>
+
+            <input type="checkbox" id="subscribe" name="subscribe">
+            <label for="subscribe">Subscribe to newsletter</label><br><br>
+
+            <input type="checkbox" id="terms" name="terms">
+            <label for="terms">I've Read the terms and conditions</label><br><br>
+
+            <input type="radio" id="male" name="gender" value="male">
+            <label for="male">Male</label><br>
+
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">Female</label><br><br>
+
+            <input type="submit" id="sub" value="Submit">
+        </form>
+    </section>
+
+    <!-- footer -->
+    <footer class="py-4">
+        <div class="container footer-row">
+            <div class="footer-item">
+                <a href="index.html" class="site-brand">
+                    <img src="Elogo.png" />
+                </a>
+                <p class="text">Live The Nubian Experience.</p>
+            </div>
+
+            <div class="footer-item">
+                <h2>Follow us on: </h2>
+                <ul class="social-links">
+                    <li>
+                        <a href="#">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fab fa-pinterest"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fab fa-google-plus"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-item">
+                <h2>Popular Places:</h2>
+                <ul>
+                    <li><a href="#">Thailand</a></li>
+                    <li><a href="#">Australia</a></li>
+                    <li><a href="#">Maldives</a></li>
+                    <li><a href="#">Switzerland</a></li>
+                    <li><a href="#">Germany</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <!-- end of footer -->
+
+    <!-- js -->
+    <script src="js/script.js"></script>
+    <script>
+        document.getElementById('email').addEventListener('input', function () {
+            var email = this.value;
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Regular expression for email validation
+
+            if (!emailRegex.test(email)) {
+                document.getElementById('email-error').textContent = 'Please enter a valid email address';
+            } else {
+                document.getElementById('email-error').textContent = '';
+            }
+        });
+
+        document.getElementById('contactForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var message = document.getElementById('message').value;
+            var terms = document.getElementById('terms').checked;
+
+            var nameRegex = /^[A-Za-z\s]+$/; // Regular expression for name validation
+
+            if (!name) {
+                document.getElementById('name-error').textContent = 'Please enter your name';
+                return;
+            } else if (!nameRegex.test(name)) {
+                document.getElementById('name-error').textContent = 'Please enter a valid name';
+                return;
+            } else {
+                document.getElementById('name-error').textContent = '';
+            }
+
+            if (!email) {
+                document.getElementById('email-error').textContent = 'Please enter your email';
+                return;
+            }
+
+            if (!message) {
+                alert('Please enter your message.');
+                return;
+            }
+
+            if (!terms) {
+                alert('Please accept the terms and conditions.');
+                return;
+            }
+
+            // Prepare form data
+            var formData = new FormData(this);
+
+            // Send AJAX request
+            fetch('process_form.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert("Your Message Has Been Sent Successfully!");
+                document.getElementById('contactForm').reset();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
